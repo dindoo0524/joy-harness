@@ -25,7 +25,7 @@ Agent와 Template는 언제든 바뀔 수 있지만, Command는 그대로 유지
 |---------|------|
 | `/activity` | 프로젝트형 활동 설계 |
 | `/review` | 수업 콘텐츠 리뷰 |
-| `/eng` | 영어 수업 지원 |
+| `/eng` | 영어 수업 지원 (Claire — 자신감 우선 코칭 스타일) |
 
 ## Workflow
 
@@ -166,21 +166,29 @@ Discovery Lab 소개 페이지를 만들어줘.
 
 ## `/eng`
 
-**목적**: 영어 수업 지원
+**목적**: 영어 수업 지원 — Claire(20년차 영어 교사 페르소나)가 코칭 스타일로 지원. 사용자가 직접 쓴 영어 초안을 처음부터 다시 쓰지 않고, 끝까지 스스로 표현하도록 기다린 뒤 막히는 부분만 작은 힌트로 돕는다. 완벽한 영어보다 사용자가 자신감을 갖고 영어로 수업하는 것이 목표.
 
-**Agent**: `english-teaching`
+**Agent**: `english-teaching` (Claire)
 
-**출력**
+**출력** (상황에 따라 필요한 것만)
 - Classroom English
-- 발표 스크립트
-- 학생 질문
-- 자연스러운 영어 표현
+- Activity Script
+- Presentation Script
+- Student Questions
+- Vocabulary Hint
+- Alternative Expressions
 
 **사용 예시**
 ```text
 /eng
 
 이 수업을 영어로 진행할 수 있도록 바꿔줘.
+```
+
+```text
+/eng
+
+내가 써본 문장인데 막히는 부분만 살짝 도와줘: "Today we make a robot..."
 ```
 
 ---
