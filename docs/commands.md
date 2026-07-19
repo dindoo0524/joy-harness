@@ -37,6 +37,14 @@ Agent와 Template는 언제든 바뀔 수 있지만, Command는 그대로 유지
 
 > `/publish`, `/commit`, `/commit-push`는 "결과물 생성"이 아니라 작업을 마무리/반영하는 워크플로우 커맨드라, 위 Command Mapping 원칙(하나의 Command = 하나의 대표 결과물)과는 성격이 다릅니다. 별도 카테고리로 분리했습니다.
 
+## Output
+
+| Command | 설명 |
+|---------|------|
+| `/output` | Output Target(어디서 쓸지) × Output Quality(얼마나 다듬을지)를 조합해서 결과물 생성 |
+
+> Target(`notion`/`docs`/`artifact`/`html`/`prompt`/`brief`)과 Quality(`--draft`/`--review`/`--clean`/`--final`/`--share`)는 서로 독립적으로 조합됩니다. `notion`, `html` Target은 각각 `/md`, `/lesson`과 같은 agent(`markdown-document`, `html-lesson`)를 재사용합니다 — 중복 agent를 만들지 않습니다.
+
 ## Meta
 
 | Command | 설명 |
@@ -327,4 +335,37 @@ Purpose: 포스터 HTML 생성
 **사용 예시**
 ```text
 /session-summary
+```
+
+---
+
+## `/output`
+
+**목적**: Output Target(어디서 쓸지)과 Output Quality(얼마나 다듬을지)를 독립적으로 조합해서 결과물을 만든다. 새 Target/Quality가 추가돼도 구조를 바꾸지 않고 항목만 늘릴 수 있게 설계됨.
+
+**Target** (agent 재사용 여부 표시)
+| Target | 설명 | Agent |
+|---|---|---|
+| `notion` | 노션 붙여넣기용 Markdown | `markdown-document` (= `/md`) |
+| `docs` | `docs/` 저장용 Markdown, 파일명 제안 포함 | `markdown-document` |
+| `artifact` | Lesson/Worksheet/Activity 등 결과물 단위 출력 | 종류에 맞는 기존 agent로 라우팅 |
+| `html` | 단일 HTML 파일, CSS 포함, 배포 가능 | `html-lesson` (= `/lesson`, `/card`) |
+| `prompt` | 다른 AI에게 전달 가능한 독립 프롬프트 | — |
+| `brief` | 카톡/이메일/학부모 안내 등 공유용 요약 | — |
+
+**Quality**
+| Quality | 목표 | 사용 시점 |
+|---|---|---|
+| `--draft` | 속도 우선, 구조 중심 | 아이디어 탐색·기획 초안 |
+| `--review` | 논리 확인, 중복/누락 점검 | 리뷰 직전 |
+| `--clean` | 문장·구조 정리, 장기 보관 가능 | docs 저장 |
+| `--final` | 문장 완성, 표현 통일, 가독성 최적화 | 공유·배포 직전 |
+| `--share` | 짧고 대상 맞춤 | 외부 공유 직전 |
+
+**사용 예시**
+```text
+/output notion --draft
+/output docs --clean
+/output html --final
+/output prompt --share
 ```
