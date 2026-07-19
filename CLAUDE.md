@@ -21,6 +21,21 @@ Cross-cutting rules for anything produced here (from the working spec, not to be
 - Markdown output: paste-ready into Notion with minimal reformatting needed.
 - Same input should produce similarly-good output each time — consistency over cleverness.
 
+## Asset (image) storage convention
+
+Posters, curriculum images, and other non-generated visual assets (not produced by `.claude/` agents) live alongside the content they belong to:
+
+```
+work/{project}/{track}/assets/{type}-{slug}-{date}.{ext}
+```
+
+- `type`: `poster` / `curriculum` / `card` / `photo` etc. — what the image is for
+- `slug`: short kebab-case description of the content
+- `date`: `YYYYMMDD`, the date the image was added (same format as `docs/missions/M{ID}-{date}-{slug}.md`)
+- Drop the original filename (e.g. camera/export names like `TalkMedia_i_xxx.png`) — it carries no meaning
+
+Claude cannot write pasted/attached image bytes directly to disk — there's no tool access to the source file. The user drags the file into the target folder (or gives a file path to move), and Claude names/places it per this convention.
+
 ## Working order
 
 Per the user's explicit direction: **Workflow → repeated real use → validated → then Product.** Don't jump ahead to implementing Joy Harness as a product (UX, database, agent orchestration platform) until the content-production agents above have been used and proven on real Chiang Mai material. When that work resumes, `docs/product-model.md` is the reference to build against, in the order it states: UX/information architecture → Agent architecture → data model/API → AI workflow.
