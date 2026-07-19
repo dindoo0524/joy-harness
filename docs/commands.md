@@ -37,6 +37,12 @@ Agent와 Template는 언제든 바뀔 수 있지만, Command는 그대로 유지
 
 > `/publish`, `/commit`, `/commit-push`는 "결과물 생성"이 아니라 작업을 마무리/반영하는 워크플로우 커맨드라, 위 Command Mapping 원칙(하나의 Command = 하나의 대표 결과물)과는 성격이 다릅니다. 별도 카테고리로 분리했습니다.
 
+## Planning
+
+| Command | 설명 |
+|---------|------|
+| `/mission` | 오늘 하루치 작은 미션 하나를 설계 (Scope, Pomodoro 타임박스, 성공 기준, 첫 뽀모도로) |
+
 ## Output
 
 | Command | 설명 |
@@ -317,6 +323,7 @@ Purpose: 포스터 HTML 생성
 - 남은 TODO/논의거리 체크리스트 (없으면 "안전하게 끊어도 됨" 안내)
 - **Session Summary** — `/session-summary`와 동일한 방식으로 만드는 공유용 Markdown 블록
 - 미기록 open item이 있으면 메모리 저장 여부를 먼저 확인
+- 진행 중인 `docs/missions/` Mission이 있으면 Status·Actual(Pomodoro Used 등)·Reflection을 업데이트
 
 **사용 예시**
 ```text
@@ -368,4 +375,23 @@ Purpose: 포스터 HTML 생성
 /output docs --clean
 /output html --final
 /output prompt --share
+```
+
+---
+
+## `/mission`
+
+**목적**: 작은 미션 하나를 설계하고 `docs/missions/`에 고유 Mission ID(M001, M002, ...)로 파일을 생성한다. 프로젝트를 완성하는 게 아니라 실제 작업을 한 단계 앞으로 진행시키는 게 목표. 방향이 애매하면 시작 전에 먼저 확인한다. Mission ID는 하루 단위가 아니라 프로젝트 전체의 영구 식별자이며, 절대 재사용하지 않는다.
+
+**출력**
+- `docs/missions/M{ID}-{날짜}-{slug}.md` 파일 (채팅 출력이 아니라 실제 파일)
+- Objective / Scope(포함·제외) / Mission Budget(Expected·Minimum·Maximum 🍅) / Success Criteria(반드시 달성·추가 성공) / Deliverables / First Pomodoro / Actual / Reflection 을 포함한 전체 구조
+- Mission 종료 시 `/wrap-up`이 같은 파일의 Status·Actual·Reflection을 업데이트 (Estimated vs Actual 기록 포함)
+
+**사용 예시**
+```text
+/mission
+```
+```text
+/mission Church Track 첫 세션 기획 시작하고 싶어
 ```

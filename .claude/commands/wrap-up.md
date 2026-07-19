@@ -17,6 +17,12 @@ argument-hint: (인자 없음)
 6. TaskList에 `pending`/`in_progress` 상태로 남은 작업이 있는지 확인한다.
 7. `/Users/joy/.claude/projects/-Users-joy-Documents-GitHub-joy-harness/memory/`에 이미 기록된 open item이 있는지 확인한다.
 8. 대화 중 사용자에게 질문했지만 아직 답을 못 받은 것이 있는지 확인한다.
+9. **Mission 업데이트**: `docs/missions/`에서 이번 세션 중 다뤄진 Mission 문서(Status가 `Planned`이거나 아직 종료 상태가 아닌 것)를 찾는다. 있으면 사용자에게 상태를 확인한 뒤 해당 Mission 문서를 직접 수정한다:
+   - `Status`를 `Completed` / `Cancelled` / `Paused` 중 하나로 변경 (자체 판단으로 정하지 말고 애매하면 사용자에게 확인)
+   - `Actual` 블록: `Pomodoro Used`(Expected와 비교해서 실제 사용량), `Started`/`Finished`/`Duration`(가능한 범위에서), `Status`도 위와 동일하게 갱신
+   - `Reflection`: 잘된 점 / 어려웠던 점 / 다음 시작점을 이번 세션 내용을 바탕으로 채운다 — 특히 "다음 시작점"은 다음 Mission으로 자연스럽게 이어지도록 구체적으로 쓴다
+   - Expected 🍅 대비 Actual 🍅는 반드시 기록한다 (작업 추정 정확도 데이터로 쓰임)
+   - 다루는 중인 Mission이 없으면 이 단계는 건너뛴다
 
 출력 형식:
 
