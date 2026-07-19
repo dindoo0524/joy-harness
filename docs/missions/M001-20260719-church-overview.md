@@ -1,6 +1,6 @@
 # Mission M001
 
-Status: Planned
+Status: Completed
 Date: 2026-07-19
 Title: Church Track Program Overview 초안 작성
 
@@ -60,21 +60,24 @@ Church Track 기본 정보를 질문으로 확인받는다: 대상 연령/인원
 
 ## Actual
 
-Pomodoro Used: -
-Started: -
-Finished: -
-Duration: -
-Status: Planned
+Pomodoro Used: 🍅🍅 (2) — Expected 대비 조금 덜 씀
+Started: 2026-07-19 (문서만 작성, 실제 질문/답변은 미진행)
+Finished: 2026-07-19 (재개 후 완료)
+Duration: 2세션에 걸쳐 진행 (문서 초안 → 실제 질문/답변/Overview 완성)
+Status: Completed
 
 ---
 
 ## Reflection
 
 잘된 점
--
+- 포스터 한 장으로 대상/목표/톤/제약사항이 한 번에 명확해짐 — 다음부턴 참고 자료(포스터, 기존 대화)를 먼저 받는 게 질문보다 빠를 수 있음
+- School Track 커리큘럼 문서를 참고해서 "차이점 비교표"를 넣으니 Church Track 포지셔닝이 뚜렷해짐
 
 어려웠던 점
--
+- Mission 문서를 먼저 만들고 실제 First Pomodoro(질문하기)를 바로 실행하지 않아서, 시작이 늦어짐 — 문서 작성과 실제 착수를 분리해서 착수를 뒤로 미루지 않기
+- 참가 인원/팀 수, Starter Kit 기술 스택 등 일부는 사용자의 GPT 컨텍스트에만 있어 이번 Mission에서는 TBD로 남김
 
 다음 시작점
--
+- program-overview.md의 "8. 확인 필요 (TBD)" 항목을 GPT 대화에서 확인해서 채우기
+- Section 후보(4개) 중 Day1-① "팀 빌딩 + 문제 정의"부터 구체적 커리큘럼 설계 (다음 Mission)
