@@ -32,8 +32,10 @@ Agent와 Template는 언제든 바뀔 수 있지만, Command는 그대로 유지
 | Command | 설명 |
 |---------|------|
 | `/publish` | 완성된 콘텐츠를 `published/`에 최종본으로 정리 |
+| `/commit` | 현재 변경사항을 git commit (push는 안 함) |
+| `/commit-push` | 현재 변경사항을 commit하고 origin에 push |
 
-> `/publish`는 "결과물 생성"이 아니라 "완성본을 현장에서 쓸 수 있게 정리하는" 워크플로우 커맨드라, 위 Command Mapping 원칙(하나의 Command = 하나의 대표 결과물)과는 성격이 다릅니다. 별도 카테고리로 분리했습니다.
+> `/publish`, `/commit`, `/commit-push`는 "결과물 생성"이 아니라 작업을 마무리/반영하는 워크플로우 커맨드라, 위 Command Mapping 원칙(하나의 Command = 하나의 대표 결과물)과는 성격이 다릅니다. 별도 카테고리로 분리했습니다.
 
 ## Future
 
@@ -209,4 +211,32 @@ Discovery Lab 소개 페이지를 만들어줘.
 /publish
 
 .claude/templates/html/lesson.html 로 만든 결과물을 정리해줘.
+```
+
+---
+
+## `/commit`
+
+**목적**: 현재 변경사항을 git commit (push는 하지 않음)
+
+**출력**
+- 새 커밋 (관련 파일만 스테이징, "왜" 중심 메시지)
+
+**사용 예시**
+```text
+/commit
+```
+
+---
+
+## `/commit-push`
+
+**목적**: 현재 변경사항을 commit하고 origin에 push
+
+**출력**
+- 새 커밋 + push된 원격 브랜치
+
+**사용 예시**
+```text
+/commit-push
 ```
