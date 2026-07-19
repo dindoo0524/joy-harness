@@ -42,6 +42,7 @@ Agent와 Template는 언제든 바뀔 수 있지만, Command는 그대로 유지
 | Command | 설명 |
 |---------|------|
 | `/new-command` | 새 Slash Command를 일관된 구조로 생성 (Command Generator) |
+| `/plan` | 막연한 아이디어를 고품질 실행 프롬프트로 다듬은 뒤 승인 시 실행 (Prompt Architect) |
 
 ## Future
 
@@ -265,4 +266,24 @@ Discovery Lab 소개 페이지를 만들어줘.
 
 Name: poster
 Purpose: 포스터 HTML 생성
+```
+
+---
+
+## `/plan`
+
+**목적**: 막연한 아이디어를 `prompt-architect` subagent와 함께 고품질 실행 프롬프트로 다듬고, 승인되면 Main Claude가 바로 실행
+
+**Agent**: `prompt-architect` (Read/Grep/Glob만 가능 — 직접 파일을 만들거나 코드를 쓰지 않음)
+
+**출력**
+- 버전이 매겨진 실행 프롬프트 (v1 → v2 → ... 최신 버전만 유지)
+- `Prompt Approved` 승인 블록
+- 승인 후 Main Claude의 실제 실행 결과
+
+**사용 예시**
+```text
+/plan
+
+학생 진도 추적 기능을 뭔가 만들고 싶어. 아직 구체적이진 않아.
 ```
