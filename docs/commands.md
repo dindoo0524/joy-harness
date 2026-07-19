@@ -381,7 +381,9 @@ Purpose: 포스터 HTML 생성
 
 ## `/mission`
 
-**목적**: 작은 미션 하나를 설계하고 `docs/missions/`에 고유 Mission ID(M001, M002, ...)로 파일을 생성한다. 프로젝트를 완성하는 게 아니라 실제 작업을 한 단계 앞으로 진행시키는 게 목표. 방향이 애매하면 시작 전에 먼저 확인한다. Mission ID는 하루 단위가 아니라 프로젝트 전체의 영구 식별자이며, 절대 재사용하지 않는다.
+**목적**: 작은 미션 하나를 설계하고 `docs/missions/`에 고유 Mission ID(M001, M002, ...)로 파일을 생성한다. 프로젝트를 완성하는 게 아니라 실제 작업을 한 단계 앞으로 진행시키는 게 목표. Mission ID는 하루 단위가 아니라 프로젝트 전체의 영구 식별자이며, 절대 재사용하지 않는다.
+
+**흐름**: Input(Title/Goal/Expected Pomodoros/Minimum Success만 최소 입력) → Draft(나머지는 전부 Claude가 자동 생성, Proposal 상태로 미리보기) → Confirm([Y] 생성 / [E] 수정 / [C] 취소). 파일은 Confirm 이후에만 생성된다.
 
 **출력**
 - `docs/missions/M{ID}-{날짜}-{slug}.md` 파일 (채팅 출력이 아니라 실제 파일)

@@ -5,6 +5,8 @@ argument-hint: [오늘 하고 싶은 주제/방향 (선택)]
 
 현재 프로젝트 맥락을 바탕으로 작은 미션 하나를 설계하고 `docs/missions/`에 파일로 만든다. 목표는 프로젝트를 완성하는 것이 아니라, 실제 작업을 한 단계 앞으로 진행시키는 것이다.
 
+> **v1 확정 (2026-07-19):** Mission ID, Mission 문서 생성, Estimated vs Actual 기록, Wrap-up 연동이 핵심 구조로 확정됐다. 추가 구조 설계는 여기서 중단하고, 이후 개선은 실제 사용 중 발견되는 문제를 기반으로만 한다. Mission 시스템은 프로젝트를 지원하는 도구이지, 그 자체가 프로젝트가 되어서는 안 된다.
+
 ## Mission 철학
 
 Mission은 단순한 TODO가 아니다. Mission은 프로젝트를 구성하는 가장 작은 실행 단위(Unit of Work)이며, 프로젝트의 성장 기록이다. Mission 하나는 하나의 의미 있는 진전을 만든다. 프로젝트는 Mission들의 연속으로 완성된다.
@@ -21,11 +23,45 @@ Mission은 하루 단위가 아니다. 하루에 여러 개가 생길 수도, �
    - 나쁜 예: `M013-20260802-first-session-program-overview-final-v2.md` (slug는 최대한 짧고 명확하게)
 5. `docs/missions/` 안에 실제 파일로 생성한다 — 채팅 출력만으로 끝내지 않는다.
 
-## 진행 순서
+## 진행 순서 — Input → Draft → Confirm
 
-`$ARGUMENTS`로 방향이 주어졌으면 그것을 기준으로 삼는다. 없으면 최근 대화 맥락(직전 우선순위, 열려있는 항목 등)에서 후보를 파악하되, 방향이 애매하거나 여러 후보가 있으면 먼저 사용자에게 되묻는다 — 잘못된 Scope로 시작하면 뽀모도로를 낭비하게 되므로, 확신 없이 진행하지 않는다.
+Mission 생성은 항상 2단계로 진행한다. 역할은 명확히 분리한다 — **사용자는 "무엇을/오늘의 목표"만 입력**하고, **실행 범위·성공 기준·산출물·첫 뽀모도로·문서 구조는 Claude가 제안**한다. 입력은 최소화한다.
 
-Mission 문서는 아래 구조로 **생성과 동시에** 작성한다:
+### Step 1. Input
+
+아래 4가지만 짧게 묻는다 (`$ARGUMENTS`에 이미 담겨 있으면 그만큼은 다시 묻지 않는다):
+
+```
+Mission Title
+> (오늘 무엇을 할 것인가?)
+
+Mission Goal
+> (1~2문장)
+
+Expected Pomodoros
+> (Enter = 3)
+
+Minimum Success (Optional)
+> (비워도 됨)
+```
+
+### Step 2. Draft
+
+Step 1 입력만으로 아래 전체를 자동 생성한다: Mission ID, Date, Objective, Scope, Mission Budget, Success Criteria, Deliverables, First Pomodoro. (Mission ID/파일명 규칙은 위 섹션 참고. Expected Pomodoros는 입력받은 값을 그대로 쓰고, Minimum/Maximum은 그 값을 기준으로 합리적으로 제안한다. Minimum Success를 입력했으면 "반드시 달성"에 반영한다.)
+
+이 초안은 **아직 파일로 저장하지 않는다.** Draft(Proposal) 상태로 채팅에 먼저 보여주고 선택지를 제시한다:
+
+```
+[Y] Confirm → Mission 생성
+[E] Edit → 원하는 부분만 수정
+[C] Cancel → 생성 취소
+```
+
+- **Y**: 그제서야 `docs/missions/M{ID}-{날짜}-{slug}.md` 파일을 실제로 생성한다.
+- **E**: 어느 부분을 바꿀지 물어보고, 반영한 새 Draft를 다시 보여준다 (같은 Y/E/C 선택지 반복).
+- **C**: 파일을 만들지 않고 종료한다.
+
+Mission 문서는 Confirm 이후 아래 구조로 작성한다:
 
 ```
 # Mission M{ID}
