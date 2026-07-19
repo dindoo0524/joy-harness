@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>발표자료</title>
+<link rel="stylesheet" as="style" crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    height: 100%;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Malgun Gothic', sans-serif;
+    background: #111;
+  }
+  .deck {
+    height: 100%;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+  }
+  .slide {
+    height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 8vh 8vw;
+    color: #fff;
+    background: #1c1c1c;
+  }
+  .slide:nth-child(even) { background: #202634; }
+  .slide h1 { font-size: 2.4rem; margin: 0 0 16px; }
+  .slide p, .slide li { font-size: 1.2rem; line-height: 1.5; color: #ddd; }
+  .slide .eyebrow {
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8ab4ff;
+    margin-bottom: 8px;
+  }
+  @media (max-width: 480px) {
+    .slide { padding: 6vh 6vw; }
+    .slide h1 { font-size: 1.6rem; }
+    .slide p, .slide li { font-size: 1rem; }
+  }
+  @media print {
+    .deck { overflow: visible; height: auto; }
+    .slide { height: auto; page-break-after: always; color: #000; background: #fff !important; }
+    .slide p, .slide li { color: #333; }
+  }
+</style>
+</head>
+<body>
+  <div class="deck">
+    <section class="slide">
+      <div class="eyebrow"></div>
+      <h1>제목 슬라이드</h1>
+      <p></p>
+    </section>
+    <section class="slide">
+      <h1>다음 슬라이드</h1>
+      <ul>
+        <li></li>
+      </ul>
+    </section>
+  </div>
+</body>
+</html>
