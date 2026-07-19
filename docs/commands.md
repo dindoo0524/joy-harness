@@ -43,6 +43,8 @@ Agent와 Template는 언제든 바뀔 수 있지만, Command는 그대로 유지
 |---------|------|
 | `/new-command` | 새 Slash Command를 일관된 구조로 생성 (Command Generator) |
 | `/plan` | 막연한 아이디어를 고품질 실행 프롬프트로 다듬은 뒤 승인 시 실행 (Prompt Architect) |
+| `/wrap-up` | 이번 세션 작업 요약 + 남은 TODO/논의거리 체크리스트 + 공유용 Session Summary |
+| `/session-summary` | 지금까지의 대화를 공유 가능한 독립 요약으로만 (TODO 체크 없이, 언제든 사용 가능) |
 
 ## Future
 
@@ -294,4 +296,35 @@ Purpose: 포스터 HTML 생성
 /plan
 
 학생 진도 추적 기능을 뭔가 만들고 싶어. 아직 구체적이진 않아.
+```
+
+---
+
+## `/wrap-up`
+
+**목적**: 세션을 끝내기 전에 이번 세션에서 한 작업을 요약하고, 남은 TODO·열린 논의거리를 체크리스트로 정리 (커밋 안 된 변경사항, 보류된 논의, 답 안 된 질문 등 확인). 추가로 이 대화를 모르는 사람/다른 AI에게 그대로 공유할 수 있는 독립적인 Session Summary도 만든다.
+
+**출력**
+- 이번 세션 작업 요약 (파일 변경, 커밋, 주요 결정) — 내부용
+- 남은 TODO/논의거리 체크리스트 (없으면 "안전하게 끊어도 됨" 안내)
+- **Session Summary** — `/session-summary`와 동일한 방식으로 만드는 공유용 Markdown 블록
+- 미기록 open item이 있으면 메모리 저장 여부를 먼저 확인
+
+**사용 예시**
+```text
+/wrap-up
+```
+
+---
+
+## `/session-summary`
+
+**목적**: 지금까지의 대화를 이 대화를 전혀 모르는 독자(다른 AI 포함)도 이해할 수 있는 독립적인 요약으로 만든다. `/wrap-up`과 달리 TODO 체크리스트나 커밋 상태 확인은 하지 않고, 세션 도중 언제든 가볍게 쓸 수 있다.
+
+**출력**
+- 공유 가능한 Session Summary 하나 (Project / What happened / Key decisions / Current state / Open next steps), code fence로 감싸서 바로 복사 가능하게
+
+**사용 예시**
+```text
+/session-summary
 ```
