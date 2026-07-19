@@ -12,7 +12,7 @@ Joy Harness is a workspace for an AI project-based education practitioner (real-
 ## Content-production system (`.claude/`)
 
 - `.claude/agents/*.md` — one subagent per role. Each agent does exactly one job (generate HTML, generate Notion-ready Markdown, generate a worksheet, design an activity, review a lesson, support English teaching, write an image prompt). Don't add multi-purpose agents — split by role instead.
-- `.claude/commands/*.md` — slash commands (`/lesson`, `/worksheet`, `/review`, `/publish`) that orchestrate one or more agents for an end-to-end task.
+- `.claude/commands/*.md` — slash commands are the user-facing layer: `User → Command → Agent → Template → Result`. Users only need to remember a Command; Agent and Template are internal and can change freely. Command names are chosen by *output*, not implementation (`/card`, `/worksheet`, `/lesson`, `/md`, `/activity`, `/review`, `/eng`, plus the workflow command `/publish`). **`docs/commands.md` is the authoritative, user-facing reference for every command — update it whenever a command is added, removed, or remapped to a different agent/template.**
 - `.claude/templates/html/` and `.claude/templates/markdown/` — starting structure for each output type. Agents should check these first before generating from scratch, so repeated output stays consistent.
 
 Cross-cutting rules for anything produced here (from the working spec, not to be silently relaxed):
