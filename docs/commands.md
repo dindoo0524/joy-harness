@@ -37,6 +37,12 @@ Agent와 Template는 언제든 바뀔 수 있지만, Command는 그대로 유지
 
 > `/publish`, `/commit`, `/commit-push`는 "결과물 생성"이 아니라 작업을 마무리/반영하는 워크플로우 커맨드라, 위 Command Mapping 원칙(하나의 Command = 하나의 대표 결과물)과는 성격이 다릅니다. 별도 카테고리로 분리했습니다.
 
+## Meta
+
+| Command | 설명 |
+|---------|------|
+| `/new-command` | 새 Slash Command를 일관된 구조로 생성 (Command Generator) |
+
 ## Future
 
 - `/image`
@@ -239,4 +245,24 @@ Discovery Lab 소개 페이지를 만들어줘.
 **사용 예시**
 ```text
 /commit-push
+```
+
+---
+
+## `/new-command`
+
+**목적**: 새 Slash Command를 일관된 구조로 생성하는 Command Generator
+
+**출력**
+- `.claude/commands/<name>.md`
+- `docs/commands.md` 업데이트 (표 + 상세 섹션)
+- 재사용 가능한 Agent/Template 연결, 또는 신규 필요 시 제안(자동 생성하지 않음)
+- CLAUDE.md 반영이 필요하면 제안
+
+**사용 예시**
+```text
+/new-command
+
+Name: poster
+Purpose: 포스터 HTML 생성
 ```
