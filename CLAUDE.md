@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is right now
 
-Joy Harness is a workspace for an AI project-based education practitioner (real-world use case: the Chiang Mai AI education project). There is no application code yet. Two things exist today:
+Joy Harness is a workspace for an AI project-based education practitioner (real-world use case: the Chiang Mai AI education project), and also hosts the practitioner's general personal SNS posting workflow (`work/sns-posting/`) — not every `work/` track is education content. There is no application code yet. Two things exist today:
 
 1. **`docs/product-model.md`** — the Product Constitution. Defines the target product's conceptual model (Workspace → Program → Project → Session → Artifact, Rehearsal, Checkpoint, Lifecycle). Read this before proposing any feature, screen, or data model — it's the standing design reference, not a historical doc. Major design decisions are additionally tracked as ADRs in `docs/adr/` (see `docs/adr/README.md`); `product-model.md` itself serves as ADR-001.
 2. **`.claude/` production system** — a set of Claude Code subagents, slash commands, and HTML/Markdown templates for actually producing classroom content (lesson pages, worksheets, activities, reviews, English-teaching support). This is the current priority: **build and use the content-production workflow before building the Joy Harness product itself.** The product model gets validated by real use of this system, not the other way around.

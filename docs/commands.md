@@ -37,6 +37,12 @@ Agent와 Template는 언제든 바뀔 수 있지만, Command는 그대로 유지
 
 > `/publish`, `/commit`, `/commit-push`는 "결과물 생성"이 아니라 작업을 마무리/반영하는 워크플로우 커맨드라, 위 Command Mapping 원칙(하나의 Command = 하나의 대표 결과물)과는 성격이 다릅니다. 별도 카테고리로 분리했습니다.
 
+## Personal
+
+| Command | 설명 |
+|---------|------|
+| `/sns-posting` (`/posting`) | 인스타그램/페이스북 포스팅 문구를 Joy-style 가이드 기반으로 작성하고, 확정본을 히스토리에 적재 |
+
 ## Planning
 
 | Command | 설명 |
@@ -375,6 +381,26 @@ Purpose: 포스터 HTML 생성
 /output docs --clean
 /output html --final
 /output prompt --share
+```
+
+---
+
+## `/sns-posting` (`/posting`)
+
+**목적**: 인스타그램/페이스북용 포스팅 문구를 `work/sns-posting/joystyle_style_guide.md`의 톤/구조를 기준으로 작성하고, 피드백 루프를 거쳐 확정되면 `work/sns-posting/history/`에 포스트 1개 = 파일 1개로 적재한다. 교육 콘텐츠 전용이 아니라 개인 SNS 전반(여행, 일상, 커리어 등)을 다룬다.
+
+**Agent**: 없음 (커맨드 자체 로직으로 동작)
+
+**출력**
+- 채팅에 보여지는 초안 (확정 전)
+- 확정 시 `work/sns-posting/history/<YYYY>/<YYYY-MM-DD>-<slug>.md` 파일
+- `work/sns-posting/history/INDEX.md`에 목차 한 줄 추가
+
+**사용 예시**
+```text
+/sns-posting
+
+어제 도이인타논 다녀온 이야기 올리고 싶어.
 ```
 
 ---
