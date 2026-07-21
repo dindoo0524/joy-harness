@@ -18,5 +18,6 @@
 | 10 | 미상 | Instagram | Backpacking & Hiking, 하남 검단산 | `legacy/10-backpacking-hanam.md` |
 | 11 | 2026-07-20 | 인스타그램 | 두 번째 치앙마이 여행 - AI 교육 프로젝트 출발 안내 | `2026/2026-07-20-second-chiangmai-trip-announcement.md` |
 | 12 | 2026-07-20 | 인스타그램 + 페이스북 | 22th 비전 커피챗 - 비전스피치 홍보 | `2026/2026-07-20-vision-coffee-chat-22th.md` |
+| 13 | 2026-07-21 | 인스타그램 | 2026 가을학기 AI 전공 수강신청 | `2026/2026-07-21-ai-major-course-registration.md` |
 
-<!-- 새 항목은 이 줄 아래에 추가 (번호는 이어서 #13부터) -->
+<!-- 새 항목은 이 줄 아래에 추가 (번호는 이어서 #14부터) -->
