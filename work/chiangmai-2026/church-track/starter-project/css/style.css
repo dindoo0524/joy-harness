@@ -1,0 +1,339 @@
+/* Material Symbols 아이콘 폰트 기본 설정 (Google 권장 값) */
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+}
+
+:root {
+  /* config.js의 theme 값으로 채워지는 포인트 색상 (기본값은 예비용) */
+  --primary-color: #2f855a;
+  --progress-color: #2f855a;
+
+  --bg: #f5f6f2;
+  --surface: #ffffff;
+  --ink: #1f2430;
+  --muted: #7a8194;
+  --line: #e7e9ef;
+
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 12px;
+  --shadow-card: 0 12px 30px rgba(31, 36, 48, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app {
+  max-width: 430px;
+  margin: 0 auto;
+  padding: 28px 18px 32px;
+}
+
+/* 헤더: app-logo / app-badge / btn-share */
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.app-logo {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.app-badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--primary-color) 14%, white);
+  color: var(--primary-color);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.btn-share {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.btn-share .material-symbols-outlined {
+  font-size: 20px;
+}
+
+/* 미션 카드 */
+.mission-card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: 22px 18px;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 16px;
+}
+
+.mission-top {
+  display: grid;
+  grid-template-columns: 1fr 96px;
+  gap: 14px;
+  align-items: stretch;
+  margin-bottom: 20px;
+}
+
+.mission-copy {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+
+.mission-category {
+  margin: 0;
+  width: fit-content;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--primary-color) 10%, white);
+  color: var(--primary-color);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.mission-title {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+}
+
+.mission-description {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.mission-image {
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--primary-color) 10%, white);
+  color: var(--primary-color);
+}
+
+.mission-image .material-symbols-outlined {
+  font-size: 34px;
+}
+
+/* 진행률 */
+.progress-section {
+  display: grid;
+  gap: 8px;
+}
+
+.progress-bar {
+  height: 14px;
+  padding: 2px;
+  border-radius: 999px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: inherit;
+  background: var(--progress-color);
+  transition: width 0.3s ease;
+}
+
+.progress-label {
+  margin: 0;
+  text-align: right;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+/* 요약 카드 */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.summary-card {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  padding: 16px 8px;
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  text-align: center;
+}
+
+.summary-value {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.summary-label {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* 기록 입력 */
+.record-form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.record-input-field {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--ink);
+}
+
+.record-input-field:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 1px;
+}
+
+.btn-add-record {
+  padding: 0 18px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--primary-color);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* 기록 목록 */
+.record-list {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 16px;
+  min-height: 60px;
+}
+
+.record-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px;
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-card);
+  font-size: 13px;
+}
+
+.record-item .material-symbols-outlined {
+  font-size: 18px;
+  color: var(--primary-color);
+}
+
+.record-empty {
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* 하단 메뉴 */
+.bottom-nav {
+  position: sticky;
+  bottom: 14px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  padding: 10px;
+  background: var(--surface);
+  border-radius: 20px;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.14);
+}
+
+.bottom-button {
+  display: grid;
+  justify-items: center;
+  gap: 3px;
+  padding: 8px 4px;
+  border: none;
+  border-radius: 14px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.bottom-button:hover,
+.bottom-button:focus-visible {
+  background: color-mix(in srgb, var(--primary-color) 10%, white);
+  color: var(--primary-color);
+}
+
+.bottom-button .material-symbols-outlined {
+  font-size: 20px;
+}
+
+@media (max-width: 380px) {
+  .mission-top {
+    grid-template-columns: 1fr;
+  }
+
+  .mission-image {
+    min-height: 90px;
+  }
+}

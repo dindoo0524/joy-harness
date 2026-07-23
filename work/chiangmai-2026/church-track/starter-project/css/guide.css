@@ -1,0 +1,27 @@
+/* Guide Mode: Alt+G로 body에 .guide-mode 클래스가 토글되면 켜집니다. */
+body.guide-mode .progress-bar {
+  overflow: visible;
+}
+
+body.guide-mode [data-guide] {
+  position: relative;
+  outline: 1.5px dashed #ef4444;
+  outline-offset: 2px;
+}
+
+body.guide-mode [data-guide]::before {
+  content: attr(data-guide);
+  position: absolute;
+  top: -10px;
+  left: 6px;
+  z-index: 999;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  font-family: "Noto Sans KR", sans-serif;
+  white-space: nowrap;
+  pointer-events: none;
+}

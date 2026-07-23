@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Joy Starter UI Object Guide</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --paper: #f7f5ef;
+      --screen: #ffffff;
+      --ink: #202124;
+      --muted: #73777f;
+      --line: #dddfe4;
+
+      --logo: #ef4444;
+      --badge: #f97316;
+      --mission-card: #8b5cf6;
+      --mission-category: #ec4899;
+      --mission-title: #2563eb;
+      --mission-description: #0891b2;
+      --progress-section: #16a34a;
+      --progress-bar: #65a30d;
+      --progress-fill: #15803d;
+      --progress-label: #0f766e;
+      --mission-image: #d97706;
+      --summary-card: #7c3aed;
+      --record-input: #db2777;
+      --record-list: #0d9488;
+      --bottom-nav: #334155;
+      --bottom-button: #475569;
+      --share-button: #ca8a04;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 40px 20px;
+      background:
+        linear-gradient(rgba(255,255,255,.55), rgba(255,255,255,.55)),
+        repeating-linear-gradient(
+          0deg,
+          #ede8dd 0,
+          #ede8dd 1px,
+          transparent 1px,
+          transparent 28px
+        );
+      color: var(--ink);
+      font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+    }
+
+    .page {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+    }
+
+    .page-header {
+      margin-bottom: 24px;
+    }
+
+    .page-header h1 {
+      margin: 0 0 8px;
+      font-size: clamp(24px, 4vw, 42px);
+      letter-spacing: -0.04em;
+    }
+
+    .page-header p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 480px) minmax(280px, 1fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .phone {
+      position: relative;
+      width: 100%;
+      min-height: 860px;
+      padding: 24px 20px 112px;
+      background: var(--screen);
+      border: 1px solid #cfd3da;
+      border-radius: 32px;
+      box-shadow: 0 22px 60px rgba(26, 32, 44, .14);
+      overflow: hidden;
+    }
+
+    .object {
+      position: relative;
+      border: 2px solid currentColor;
+      border-radius: 16px;
+      background: color-mix(in srgb, currentColor 7%, white);
+    }
+
+    .object-label {
+      position: absolute;
+      top: -13px;
+      left: 12px;
+      z-index: 5;
+      padding: 3px 8px;
+      border-radius: 999px;
+      /* background: currentColor; */
+      /* color: white; */
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .01em;
+      white-space: nowrap;
+      box-shadow: 0 3px 8px rgba(0,0,0,.12);
+    }
+
+    .header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .app-logo {
+      color: var(--logo);
+      padding: 16px 20px;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      line-height: 1;
+    }
+
+    .app-badge {
+      color: var(--badge);
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .mission-card {
+      color: var(--mission-card);
+      padding: 28px 20px 20px;
+      margin-bottom: 22px;
+    }
+
+    .mission-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 132px;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .mission-copy {
+      display: grid;
+      gap: 12px;
+    }
+
+    .mission-category {
+      color: var(--mission-category);
+      width: fit-content;
+      padding: 10px 12px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .mission-title {
+      color: var(--mission-title);
+      padding: 16px;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .mission-description {
+      color: var(--mission-description);
+      padding: 14px 16px;
+      min-height: 72px;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .mission-image {
+      color: var(--mission-image);
+      min-height: 220px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 12px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .mission-image .material-symbols-outlined {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 52px;
+    }
+
+    .progress-section {
+      color: var(--progress-section);
+      margin-top: 18px;
+      padding: 24px 14px 14px;
+    }
+
+    .progress-bar {
+      color: var(--progress-bar);
+      height: 28px;
+      padding: 4px;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      position: relative;
+      color: var(--progress-fill);
+      width: 64%;
+      height: 100%;
+      border: 0;
+      border-radius: inherit;
+      background: var(--progress-fill);
+    }
+
+    .progress-fill .object-label {
+      top: -27px;
+      left: auto;
+      right: 0;
+    }
+
+    .progress-label {
+      color: var(--progress-label);
+      width: fit-content;
+      margin: 12px 0 0 auto;
+      padding: 8px 10px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .summary-card {
+      color: var(--summary-card);
+      min-height: 104px;
+      padding: 24px 12px 14px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .record-input {
+      color: var(--record-input);
+      min-height: 110px;
+      margin-bottom: 18px;
+      padding: 28px 16px 16px;
+    }
+
+    .fake-input {
+      height: 48px;
+      border: 1px dashed currentColor;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      padding: 0 14px;
+      color: var(--muted);
+      background: rgba(255,255,255,.75);
+      font-size: 13px;
+    }
+
+    .record-list {
+      color: var(--record-list);
+      min-height: 150px;
+      padding: 28px 14px 14px;
+    }
+
+    .record-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px;
+      border: 1px dashed currentColor;
+      border-radius: 12px;
+      background: rgba(255,255,255,.78);
+      font-size: 13px;
+    }
+
+    .share-button {
+      position: absolute;
+      top: 162px;
+      right: 30px;
+      z-index: 8;
+      color: var(--share-button);
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border: 2px solid currentColor;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 8px 18px rgba(0,0,0,.12);
+    }
+
+    .share-button .object-label {
+      top: -15px;
+      left: auto;
+      right: 2px;
+    }
+
+    .bottom-nav {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      color: var(--bottom-nav);
+      padding: 18px 10px 10px;
+      border-radius: 22px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      background: #f8fafc;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, .15);
+    }
+
+    .bottom-button {
+      position: relative;
+      color: var(--bottom-button);
+      min-height: 62px;
+      padding: 10px 6px;
+      border: 1.5px solid currentColor;
+      border-radius: 14px;
+      background: white;
+      display: grid;
+      place-items: center;
+      gap: 3px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .bottom-button .material-symbols-outlined {
+      font-size: 24px;
+    }
+
+    .bottom-button .object-label {
+      top: auto;
+      bottom: -11px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 9px;
+    }
+
+    .guide-panel {
+      padding: 24px;
+      background: rgba(255,255,255,.94);
+      border: 1px solid #d8dbe2;
+      border-radius: 24px;
+      box-shadow: 0 18px 50px rgba(26,32,44,.10);
+    }
+
+    .guide-panel h2 {
+      margin: 0 0 8px;
+      font-size: 24px;
+      letter-spacing: -0.03em;
+    }
+
+    .guide-panel > p {
+      margin: 0 0 20px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .guide-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .guide-row {
+      display: grid;
+      grid-template-columns: 16px minmax(130px, .9fr) 1.4fr;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #eceef2;
+    }
+
+    .guide-row:last-child {
+      border-bottom: 0;
+    }
+
+    .swatch {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      background: var(--swatch);
+    }
+
+    .guide-name {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .guide-desc {
+      color: #5f6368;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .note {
+      margin-top: 22px;
+      padding: 16px;
+      border-radius: 16px;
+      background: #f1f5f9;
+      color: #475569;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 860px) {
+      body {
+        padding: 24px 14px;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .phone {
+        max-width: 500px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .phone {
+        min-height: 820px;
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .mission-top {
+        grid-template-columns: 1fr;
+      }
+
+      .mission-image {
+        min-height: 130px;
+      }
+
+      .share-button {
+        top: 164px;
+        right: 22px;
+      }
+
+      .guide-row {
+        grid-template-columns: 14px 1fr;
+      }
+
+      .guide-desc {
+        grid-column: 2;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="page-header">
+      <h1>Joy Starter UI Object Guide</h1>
+      <p>학생이 AI에게 화면 영역을 정확하게 설명할 수 있도록, 각 영역의 이름과 컬러를 함께 표시한 화면 시안입니다.</p>
+    </header>
+
+    <div class="layout">
+      <section class="phone" aria-label="Starter 화면 구조 시안">
+        <div class="header-row">
+          <div class="app-logo object">
+            <span class="object-label">app-logo</span>
+            Challenge Log
+          </div>
+
+          <div class="app-badge object">
+            <span class="object-label">app-badge</span>
+            7 DAY
+          </div>
+        </div>
+
+        <button class="share-button" type="button" aria-label="공유">
+          <span class="object-label">btn-share</span>
+          <span class="material-symbols-outlined">share</span>
+        </button>
+
+        <section class="mission-card object">
+          <span class="object-label">mission-card</span>
+
+          <div class="mission-top">
+            <div class="mission-copy">
+              <div class="mission-category object">
+                <span class="object-label">mission-category</span>
+                TODAY'S MISSION
+              </div>
+
+              <div class="mission-title object">
+                <span class="object-label">mission-title</span>
+                하루 한 번, 나의 도전을 기록해요
+              </div>
+
+              <div class="mission-description object">
+                <span class="object-label">mission-description</span>
+                작지만 꾸준한 기록이 나만의 성장 이야기가 됩니다.
+              </div>
+            </div>
+
+            <div class="mission-image object">
+              <span class="object-label">mission-image</span>
+              <div>
+                <span class="material-symbols-outlined">rocket_launch</span>
+                대표 이미지 영역
+              </div>
+            </div>
+          </div>
+
+          <div class="progress-section object">
+            <span class="object-label">progress-section</span>
+
+            <div class="progress-bar object">
+              <span class="object-label">progress-bar</span>
+              <div class="progress-fill">
+                <span class="object-label">progress-fill</span>
+              </div>
+            </div>
+
+            <div class="progress-label object">
+              <span class="object-label">progress-label</span>
+              4 / 7 완료
+            </div>
+          </div>
+        </section>
+
+        <section class="summary-grid" aria-label="요약 카드">
+          <article class="summary-card object">
+            <span class="object-label">summary-card-1</span>
+            오늘 기록<br>1개
+          </article>
+
+          <article class="summary-card object">
+            <span class="object-label">summary-card-2</span>
+            연속 기록<br>4일
+          </article>
+
+          <article class="summary-card object">
+            <span class="object-label">summary-card-3</span>
+            전체 기록<br>12개
+          </article>
+        </section>
+
+        <section class="record-input object">
+          <span class="object-label">record-input</span>
+          <div class="fake-input">오늘의 도전을 입력하세요.</div>
+        </section>
+
+        <section class="record-list object">
+          <span class="object-label">record-list</span>
+          <div class="record-item">
+            <span>아침 산책 20분 완료</span>
+            <span class="material-symbols-outlined">check_circle</span>
+          </div>
+        </section>
+
+        <nav class="bottom-nav object" aria-label="하단 메뉴">
+          <span class="object-label">bottom-nav</span>
+
+          <button class="bottom-button" type="button">
+            <span class="material-symbols-outlined">home</span>
+            홈
+            <span class="object-label">btn-home</span>
+          </button>
+
+          <button class="bottom-button" type="button">
+            <span class="material-symbols-outlined">edit_note</span>
+            기록
+            <span class="object-label">btn-record</span>
+          </button>
+
+          <button class="bottom-button" type="button">
+            <span class="material-symbols-outlined">monitoring</span>
+            요약
+            <span class="object-label">btn-summary</span>
+          </button>
+
+          <button class="bottom-button" type="button">
+            <span class="material-symbols-outlined">more_horiz</span>
+            더보기
+            <span class="object-label">btn-more</span>
+          </button>
+        </nav>
+      </section>
+
+      <aside class="guide-panel">
+        <h2>Object Guide</h2>
+        <p>테두리 컬러와 라벨 컬러가 같은 영역을 가리킵니다.</p>
+
+        <div class="guide-list">
+          <div class="guide-row"><span class="swatch" style="--swatch: var(--logo)"></span><span class="guide-name">app-logo</span><span class="guide-desc">앱 이름 또는 브랜드 이름</span></div>
+          <div class="guide-row"><span class="swatch" style="--swatch: var(--badge)"></span><span class="guide-name">app-badge</span><span class="guide-desc">기간, 상태, 짧은 안내</span></div>
+          <div class="guide-row"><span class="swatch" style="--swatch: var(--mission-card)"></span><span class="guide-name">mission-card</span><span class="guide-desc">현재 미션을 보여주는 큰 카드</span></div>
+          <div class="guide-row"><span class="swatch" style="--swatch: var(--mission-category)"></span><span class="guide-name">mission-category</span><span class="guide-desc">미션 종류 또는 작은 제목</span></div>
+          <div class="guide-row"><span class="swatch" style="--swatch: var(--mission-title)"></span><span class="guide-name">mission-title</span><span class="guide-desc">가장 중요한 미션 제목</span></div>
+          <div class="guide-row"><span class="swatch" style="--swatch: var(--mission-description)"></span><span class="guide-name">mission-description</span><span class="guide-desc">미션에 대한 짧은 설명</span></div>
+          <div class="guide-row"><span class="swatch" style="--swatch: var(--progress-section)"></span><span class="guide-name">progress-section</span><span class="guide-desc">진행률 전체 영역</span></div>
+          <div class="guide-row"><span class="swatch" style="--swatch: var(--progress-bar)"></span><span class="guide-name">progress-bar</span><span class="guide-desc">진행률이 채워지는 바탕</span></div>
+          <div class="guide-row"><span class="swatch" style="--swatch: var(--progress-fill)"></span><span class="guide-name">progress-fill</span><span class="guide-desc">실제로 채워진 진행률 부분</span></div>
+          <div class="guide-row"><span class="swatch" style="--swatch: var(--progress-label)"></span><span class="guide-name">progress-label</span><span class="guide-desc">현재 진행 상황을 보여주는 숫자</span></div>
+          <div class="guide-row"><span class="swatch" style="--swatch: var(--mission-image)"></span><span class="guide-name">mission-image</span><span class="guide-desc">미션 대표 이미지</span></div>
+          <div class="guide-row"><span class="swatch" style="--swatch: var(--summary-card)"></span><span class="guide-name">summary-card-1~3</span><span class="guide-desc">기록 수, 연속 일수 등 요약 정보</span></div>
+          <div class="guide-row"><span class="swatch" style="--swatch: var(--record-input)"></span><span class="guide-name">record-input</span><span class="guide-desc">새로운 기록을 입력하는 영역</span></div>
+          <div class="guide-row"><span class="swatch" style="--swatch: var(--record-list)"></span><span class="guide-name">record-list</span><span class="guide-desc">저장된 기록이 모이는 영역</span></div>
+          <div class="guide-row"><span class="swatch" style="--swatch: var(--bottom-nav)"></span><span class="guide-name">bottom-nav</span><span class="guide-desc">화면 아래에 고정된 메뉴</span></div>
+          <div class="guide-row"><span class="swatch" style="--swatch: var(--bottom-button)"></span><span class="guide-name">btn-home 등</span><span class="guide-desc">각 화면으로 이동하는 하단 버튼</span></div>
+          <div class="guide-row"><span class="swatch" style="--swatch: var(--share-button)"></span><span class="guide-name">btn-share</span><span class="guide-desc">친구에게 공유하는 버튼</span></div>
+        </div>
+
+        <div class="note">
+          Progress Bar의 컬러는 CSS 변수 <code>--progress-fill</code> 값만 바꾸면 학생이 쉽게 변경할 수 있도록 설계했습니다.
+        </div>
+      </aside>
+    </div>
+  </main>
+</body>
+</html>
