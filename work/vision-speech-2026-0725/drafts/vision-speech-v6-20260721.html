@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>내가 더 나다운 시간을 보낼 수 있는 이유</title>
+  <style>
+    :root {
+      --black: #000;
+      --white: #fff;
+      --ink: #111;
+      --muted: #666;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: #d9d9d9;
+      color: var(--ink);
+      font-family: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo",
+        -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .deck {
+      display: grid;
+      gap: 28px;
+      padding: 28px;
+      justify-content: center;
+    }
+
+    .slide {
+      position: relative;
+      width: min(1600px, calc(100vw - 56px));
+      aspect-ratio: 16 / 9;
+      background: var(--white);
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .slide.dark {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .inner {
+      position: absolute;
+      inset: 0;
+      padding: 7.2% 5.4%;
+    }
+
+    .title-large {
+      margin: 0;
+      max-width: 900px;
+      font-size: clamp(44px, 5.2vw, 96px);
+      line-height: 1.18;
+      letter-spacing: -0.055em;
+      font-weight: 800;
+    }
+
+    .year {
+      margin: 0 0 5.5%;
+      font-size: clamp(42px, 4.8vw, 84px);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+    }
+
+    .why {
+      margin: 0;
+      font-size: clamp(38px, 4vw, 70px);
+      line-height: 1.23;
+      letter-spacing: -0.05em;
+      font-weight: 800;
+      white-space: pre-line;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: clamp(36px, 4vw, 72px);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      font-weight: 800;
+    }
+
+    .question {
+      position: absolute;
+      right: 5.4%;
+      bottom: 8.5%;
+      margin: 0;
+      max-width: 620px;
+      font-size: clamp(28px, 2.8vw, 54px);
+      line-height: 1.35;
+      letter-spacing: -0.04em;
+      font-weight: 500;
+      text-align: left;
+    }
+
+    .keywords {
+      margin: 7% 0 0;
+      font-size: clamp(26px, 2.7vw, 50px);
+      line-height: 1.55;
+      letter-spacing: -0.03em;
+      font-weight: 500;
+    }
+
+    .understand-word {
+      position: absolute;
+      left: 5.4%;
+      top: 7.2%;
+      margin: 0;
+      font-size: clamp(36px, 4vw, 72px);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      font-weight: 800;
+    }
+
+    .stat-wrap {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .stat {
+      margin: 0;
+      font-size: clamp(120px, 16vw, 300px);
+      line-height: 0.86;
+      letter-spacing: -0.08em;
+      font-weight: 800;
+    }
+
+    .stat-label {
+      margin: 6% 0 0;
+      font-size: clamp(28px, 3vw, 56px);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      font-weight: 700;
+    }
+
+    .closing {
+      margin: 0;
+      max-width: 980px;
+      font-size: clamp(44px, 5vw, 92px);
+      line-height: 1.2;
+      letter-spacing: -0.055em;
+      font-weight: 800;
+    }
+
+    .slide-number {
+      position: absolute;
+      right: 2.4%;
+      bottom: 2.4%;
+      font-size: 16px;
+      color: rgba(0, 0, 0, 0.28);
+    }
+
+    .dark .slide-number {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    @media (max-width: 900px) {
+      .deck {
+        gap: 16px;
+        padding: 16px;
+      }
+
+      .slide {
+        width: calc(100vw - 32px);
+      }
+    }
+
+    @media print {
+      @page {
+        size: 16in 9in;
+        margin: 0;
+      }
+
+      body {
+        background: #fff;
+      }
+
+      .deck {
+        display: block;
+        padding: 0;
+      }
+
+      .slide {
+        width: 16in;
+        height: 9in;
+        aspect-ratio: auto;
+        box-shadow: none;
+        break-after: page;
+        page-break-after: always;
+      }
+
+      .slide-number {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="deck">
+    <section class="slide dark">
+      <div class="inner">
+        <h1 class="title-large">“내가 더 나다운 시간을<br />보낼 수 있는 이유”</h1>
+      </div>
+      <div class="slide-number">1</div>
+    </section>
+
+    <section class="slide">
+      <div class="inner">
+        <p class="year">2017,</p>
+        <p class="why">왜..<br />왜..<br />왜..</p>
+      </div>
+      <div class="slide-number">2</div>
+    </section>
+
+    <section class="slide">
+      <div class="inner">
+        <h2 class="section-title">질문하다</h2>
+        <p class="question">“어떻게 하면..”</p>
+      </div>
+      <div class="slide-number">3</div>
+    </section>
+
+    <section class="slide">
+      <div class="inner">
+        <h2 class="section-title">실험하다</h2>
+        <p class="keywords">Time, Cafe, Notebook, Post-it, Sticker</p>
+      </div>
+      <div class="slide-number">4</div>
+    </section>
+
+    <section class="slide">
+      <div class="inner">
+        <h2 class="understand-word">이해하다</h2>
+      </div>
+      <div class="slide-number">5</div>
+    </section>
+
+    <section class="slide">
+      <div class="inner">
+        <div class="stat-wrap">
+          <p class="stat">85%</p>
+          <p class="stat-label">Environment</p>
+        </div>
+      </div>
+      <div class="slide-number">6</div>
+    </section>
+
+    <section class="slide dark">
+      <div class="inner">
+        <h2 class="closing">“이번 달,<br /><br />더 나답게 살기 위해<br /><br />무엇을 한번<br />실험해보시겠습니까?”</h2>
+      </div>
+      <div class="slide-number">7</div>
+    </section>
+  </main>
+</body>
+</html>

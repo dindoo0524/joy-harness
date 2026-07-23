@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>내가 더 나다운 시간을 보낼 수 있는 이유 — TED ver.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Caveat:wght@400;600;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #fff;
+    --ink: #141414;
+    --muted: #7a7a7a;
+    --hand-kr: 'Gaegu', sans-serif;
+    --hand-en: 'Caveat', cursive;
+    --base: 'Pretendard', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: #ddd;
+    color: var(--ink);
+    font-family: var(--base);
+  }
+  .deck {
+    display: grid;
+    gap: 28px;
+    padding: 28px;
+    justify-content: center;
+  }
+  .slide {
+    position: relative;
+    width: min(1600px, calc(100vw - 56px));
+    aspect-ratio: 16 / 9;
+    background: var(--white);
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.14);
+  }
+  .slide.dark { background: var(--black); color: var(--white); }
+  .inner { position: absolute; inset: 0; padding: 7% 6%; }
+
+  /* ---- decorative hand-drawn doodles (inline SVG, stroke only) ---- */
+  .doodle { position: absolute; opacity: 0.9; pointer-events: none; }
+  .dark .doodle { stroke: var(--white); }
+  .doodle-stroke { stroke: var(--ink); }
+  .doodle svg { display: block; }
+
+  /* Slide 1 — title */
+  .s1 .kicker {
+    font-family: var(--hand-en);
+    font-size: clamp(20px, 1.8vw, 30px);
+    letter-spacing: 0.02em;
+    color: rgba(255,255,255,0.55);
+    margin: 0 0 3%;
+  }
+  .s1 .title {
+    font-family: var(--hand-kr);
+    font-weight: 700;
+    font-size: clamp(46px, 6vw, 108px);
+    line-height: 1.28;
+    margin: 0;
+    max-width: 980px;
+  }
+
+  /* Slide 2 — 2017 / why */
+  .s2 .year {
+    font-family: var(--hand-en);
+    font-weight: 700;
+    font-size: clamp(60px, 8vw, 160px);
+    line-height: 0.9;
+    margin: 0 0 4%;
+  }
+  .s2 .why {
+    font-family: var(--hand-kr);
+    font-weight: 700;
+    font-size: clamp(48px, 6vw, 100px);
+    line-height: 1.15;
+    margin: 0;
+  }
+  .s2 .why-en {
+    font-family: var(--hand-en);
+    font-weight: 600;
+    font-size: clamp(24px, 2.4vw, 40px);
+    color: var(--muted);
+    margin: 3% 0 0;
+  }
+
+  /* Slide 3 — question */
+  .s3 .label {
+    font-family: var(--hand-kr);
+    font-weight: 700;
+    font-size: clamp(40px, 4.4vw, 76px);
+    margin: 0 0 2%;
+  }
+  .s3 .label-en {
+    font-family: var(--hand-en);
+    font-weight: 600;
+    font-size: clamp(22px, 2.2vw, 36px);
+    color: var(--muted);
+    margin: 0 0 10%;
+  }
+  .s3 .q {
+    font-family: var(--hand-kr);
+    font-weight: 700;
+    font-size: clamp(36px, 3.6vw, 62px);
+    margin: 0;
+  }
+  .s3 .q-en {
+    font-family: var(--hand-en);
+    font-weight: 600;
+    font-size: clamp(24px, 2.4vw, 40px);
+    color: var(--muted);
+    margin: 2% 0 0;
+  }
+
+  /* Slide 4 — experiment keywords */
+  .s4 .label { font-family: var(--hand-kr); font-weight: 700; font-size: clamp(40px, 4.4vw, 76px); margin: 0 0 2%; }
+  .s4 .label-en { font-family: var(--hand-en); font-weight: 600; font-size: clamp(22px, 2.2vw, 36px); color: var(--muted); margin: 0 0 12%; }
+  .s4 .keywords {
+    font-family: var(--hand-en);
+    font-weight: 700;
+    font-size: clamp(30px, 3.2vw, 56px);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* Slide 5 — understand */
+  .s5 .label { font-family: var(--hand-kr); font-weight: 700; font-size: clamp(44px, 5vw, 88px); margin: 0; }
+  .s5 .label-en { font-family: var(--hand-en); font-weight: 600; font-size: clamp(26px, 2.6vw, 44px); color: var(--muted); margin: 3% 0 0; }
+
+  /* Slide 6 — stat */
+  .s6 .stat-wrap { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); text-align: center; }
+  .s6 .stat { font-family: var(--hand-en); font-weight: 700; font-size: clamp(140px, 18vw, 320px); line-height: 0.8; margin: 0; }
+  .s6 .stat-label { font-family: var(--hand-kr); font-weight: 700; font-size: clamp(28px, 3vw, 52px); margin: 4% 0 0; }
+  .s6 .stat-label-en { font-family: var(--hand-en); font-weight: 600; font-size: clamp(20px, 2vw, 32px); color: var(--muted); margin: 1% 0 0; }
+
+  /* Slide 7 — closing */
+  .s7 .closing {
+    font-family: var(--hand-kr);
+    font-weight: 700;
+    font-size: clamp(40px, 4.8vw, 84px);
+    line-height: 1.3;
+    margin: 0 0 3%;
+    max-width: 1000px;
+  }
+  .s7 .closing-en {
+    font-family: var(--hand-en);
+    font-weight: 600;
+    font-size: clamp(24px, 2.4vw, 40px);
+    color: rgba(255,255,255,0.55);
+    margin: 0;
+  }
+
+  .slide-number { position: absolute; right: 2.4%; bottom: 2.4%; font-family: var(--base); font-size: 15px; color: rgba(0,0,0,0.28); }
+  .dark .slide-number { color: rgba(255,255,255,0.32); }
+
+  @media (max-width: 900px) {
+    .deck { gap: 16px; padding: 16px; }
+    .slide { width: calc(100vw - 32px); }
+  }
+
+  @media print {
+    @page { size: 16in 9in; margin: 0; }
+    body { background: #fff; }
+    .deck { display: block; padding: 0; }
+    .slide { width: 16in; height: 9in; aspect-ratio: auto; box-shadow: none; break-after: page; page-break-after: always; }
+    .slide-number { display: none; }
+  }
+</style>
+</head>
+<body>
+<main class="deck">
+
+  <!-- Slide 1: Title -->
+  <section class="slide dark s1">
+    <div class="inner">
+      <p class="kicker">Vision Coffee Chat · 2026.07.25</p>
+      <h1 class="title">“내가 더 나다운 시간을<br />보낼 수 있는 이유”</h1>
+    </div>
+    <svg class="doodle" width="180" height="180" viewBox="0 0 100 100" style="right:6%; bottom:8%;" fill="none">
+      <path d="M20 80 C 30 40, 70 40, 80 20" stroke="#fff" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
+      <path d="M70 22 L80 20 L78 30" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+    </svg>
+    <div class="slide-number">1</div>
+  </section>
+
+  <!-- Slide 2: 2017 / why -->
+  <section class="slide s2">
+    <div class="inner">
+      <p class="year">2017</p>
+      <p class="why">왜..<br />왜..<br />왜..</p>
+      <p class="why-en">why... why... why...</p>
+    </div>
+    <div class="slide-number">2</div>
+  </section>
+
+  <!-- Slide 3: question -->
+  <section class="slide s3">
+    <div class="inner">
+      <p class="label">질문하다</p>
+      <p class="label-en">Ask</p>
+      <p class="q">“어떻게 하면..”</p>
+      <p class="q-en">“How might I...”</p>
+    </div>
+    <div class="slide-number">3</div>
+  </section>
+
+  <!-- Slide 4: experiment -->
+  <section class="slide s4">
+    <div class="inner">
+      <p class="label">실험하다</p>
+      <p class="label-en">Experiment</p>
+      <p class="keywords">Time, Cafe,<br />Notebook, Post-it, Sticker</p>
+    </div>
+    <div class="slide-number">4</div>
+  </section>
+
+  <!-- Slide 5: understand -->
+  <section class="slide s5">
+    <div class="inner">
+      <p class="label">이해하다</p>
+      <p class="label-en">Understand</p>
+    </div>
+    <svg class="doodle" width="140" height="140" viewBox="0 0 100 100" style="right:8%; top:10%;" fill="none">
+      <circle cx="50" cy="50" r="34" stroke="#141414" stroke-width="2.5"/>
+      <path d="M50 16 A 34 34 0 0 1 50 84 A 17 17 0 0 1 50 50 A 17 17 0 0 0 50 16" stroke="#141414" stroke-width="2.5"/>
+    </svg>
+    <div class="slide-number">5</div>
+  </section>
+
+  <!-- Slide 6: stat -->
+  <section class="slide s6">
+    <div class="stat-wrap">
+      <p class="stat">85%</p>
+      <p class="stat-label">환경이 만든다</p>
+      <p class="stat-label-en">Environment, not willpower</p>
+    </div>
+    <div class="slide-number">6</div>
+  </section>
+
+  <!-- Slide 7: closing question -->
+  <section class="slide dark s7">
+    <div class="inner">
+      <h2 class="closing">“이번 달,<br />더 나답게 살기 위해<br />무엇을 한번<br />실험해보시겠습니까?”</h2>
+      <p class="closing-en">What will you experiment with this month?</p>
+    </div>
+    <div class="slide-number">7</div>
+  </section>
+
+</main>
+</body>
+</html>
