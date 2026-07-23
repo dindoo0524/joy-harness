@@ -64,13 +64,27 @@ function bindBottomNav() {
     "btn-home": scrollToTop,
     "btn-record": () => scrollToId("record-form"),
     "btn-summary": () => scrollToId("summary-section"),
-    "btn-more": () => scrollToId("bottom-nav"),
+    // btn-more는 아직 이동할 화면이 없어서, 스크롤 대신 짧은 안내만 보여줍니다.
+    "btn-more": () => showToast("더보기 메뉴는 다음 업데이트에서 추가될 예정이에요."),
   };
 
   Object.entries(bindings).forEach(([buttonId, handler]) => {
     const button = document.getElementById(buttonId);
     if (button) button.addEventListener("click", handler);
   });
+}
+
+let toastTimer = null;
+
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  if (!toast) return;
+
+  toast.textContent = message;
+  toast.classList.add("is-visible");
+
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove("is-visible"), 1600);
 }
 
 document.addEventListener("DOMContentLoaded", initApp);

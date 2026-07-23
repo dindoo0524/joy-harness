@@ -109,7 +109,7 @@ body {
 
 .mission-top {
   display: grid;
-  grid-template-columns: 1fr 96px;
+  grid-template-columns: 1fr 84px;
   gap: 14px;
   align-items: stretch;
   margin-bottom: 20px;
@@ -139,6 +139,9 @@ body {
   font-weight: 800;
   line-height: 1.35;
   letter-spacing: -0.02em;
+  /* 마지막 한두 글자만 다음 줄로 넘어가는 것을 막고, 줄 길이를 고르게 맞춥니다.
+     (아직 지원하지 않는 구형 브라우저에서는 그냥 평소처럼 줄바꿈됩니다) */
+  text-wrap: balance;
 }
 
 .mission-description {
@@ -326,6 +329,31 @@ body {
 
 .bottom-button .material-symbols-outlined {
   font-size: 20px;
+}
+
+/* 하단 메뉴 등에서 "지금은 이렇게 동작해요"를 짧게 안내할 때 씁니다. */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 90px;
+  transform: translate(-50%, 8px);
+  max-width: calc(100% - 40px);
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 50;
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 
 @media (max-width: 380px) {

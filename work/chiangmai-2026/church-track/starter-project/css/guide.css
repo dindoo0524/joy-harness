@@ -12,16 +12,49 @@ body.guide-mode [data-guide] {
 body.guide-mode [data-guide]::before {
   content: attr(data-guide);
   position: absolute;
-  top: -10px;
+  top: -8px;
   left: 6px;
   z-index: 999;
-  padding: 2px 6px;
+  padding: 2px 5px;
   border-radius: 999px;
   background: #ef4444;
   color: #fff;
-  font-size: 9px;
+  font-size: 8px;
   font-weight: 700;
+  line-height: 1.2;
   font-family: "Noto Sans KR", sans-serif;
   white-space: nowrap;
   pointer-events: none;
+}
+
+/*
+  아래 영역들은 자기 자신의 안쪽 여백(padding)이 0이라 첫 번째 자식 요소와
+  라벨이 같은 자리에 겹칩니다. 겹치는 라벨끼리 층을 나눠 위로 띄워 분리합니다.
+  (progress-section > progress-bar > progress-fill처럼 3단으로 중첩된 경우
+  바깥쪽일수록 더 높이 띄웁니다.)
+*/
+body.guide-mode [data-guide="progress-section"]::before {
+  top: -44px;
+}
+
+body.guide-mode [data-guide="progress-bar"]::before {
+  top: -25px;
+}
+
+body.guide-mode [data-guide="record-form"]::before,
+body.guide-mode [data-guide="record-list"]::before {
+  top: -25px;
+}
+
+/* 하단 메뉴 버튼 라벨은 bottom-nav 라벨과 겹치지 않도록 버튼 아래쪽에 표시합니다. */
+body.guide-mode .bottom-button::before {
+  top: auto;
+  bottom: -18px;
+}
+
+@media (max-width: 380px) {
+  body.guide-mode [data-guide]::before {
+    font-size: 7px;
+    padding: 1px 4px;
+  }
 }
