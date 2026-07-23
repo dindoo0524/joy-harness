@@ -1,6 +1,8 @@
 // CORE AREA
 // 이 함수들의 이름과 반환 구조는 변경하지 마세요.
-const STORAGE_KEY = "challenge-log-records";
+// 이 폴더만의 예시 데이터를 쓰기 위해 example별로 다른 key를 씁니다.
+// (file:// 로 연 여러 예시가 브라우저에서 저장소를 공유해 기록이 섞이는 것을 막기 위함 — DEMO ONLY 목적의 조정)
+const STORAGE_KEY = "challenge-log-records__01-gratitude-note";
 
 const Storage = {
   // 저장된 기록 전체를 불러옵니다. 실패하면 빈 배열을 돌려줍니다.
