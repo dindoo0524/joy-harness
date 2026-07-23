@@ -1,7 +1,10 @@
 - 날짜: 2026-07-20
 - 플랫폼: 인스타그램
 - 제목: 두 번째 치앙마이 여행 - AI 교육 프로젝트 출발 안내
-- 이미지: `assets/card-01-departure-20260720.png`
+- 이미지:
+  - `assets/second-chiangmai-trip-card-01-departure-20260720.png`
+  - `assets/second-chiangmai-trip-card-02-learn-together-20260720.png`
+  - `assets/second-chiangmai-trip-card-03-journey-begins-20260720.png`
 
 ---
 
