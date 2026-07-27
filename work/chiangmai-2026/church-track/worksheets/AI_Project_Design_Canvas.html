@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Project Design Canvas</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --line: #333;
+    --sub: #666;
+    --soft-line: #b8b8b8;
+    --paper-soft: #f7f7f7;
+    --accent: #2f855a;
+    --accent-soft: #eafaf1;
+  }
+
+  * { box-sizing: border-box; }
+
+  @page {
+    size: A4;
+    margin: 9mm;
+  }
+
+  body {
+    margin: 0;
+    background: #ececec;
+    color: var(--ink);
+    font-family: Arial, "Noto Sans", sans-serif;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 16px auto;
+    padding: 12mm;
+    background: #fff;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  }
+
+  .sheet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    padding-bottom: 11px;
+    margin-bottom: 14px;
+    border-bottom: 2px solid var(--line);
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 23px;
+    line-height: 1.25;
+  }
+
+  .subtitle {
+    margin-top: 5px;
+    color: var(--sub);
+    font-size: 13px;
+  }
+
+  .student-info {
+    display: flex;
+    gap: 14px;
+    color: var(--sub);
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .write-line {
+    display: inline-block;
+    width: 72px;
+    min-height: 15px;
+    border-bottom: 1px solid #555;
+    vertical-align: bottom;
+  }
+
+  .intro {
+    padding: 11px 14px;
+    margin-bottom: 14px;
+    border-left: 4px solid var(--accent);
+    border-radius: 7px;
+    background: var(--accent-soft);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .section {
+    margin-bottom: 14px;
+    break-inside: avoid;
+  }
+
+  .section-heading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 3px;
+    font-size: 16px;
+  }
+
+  .number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    flex: 0 0 25px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-size: 13px;
+  }
+
+  .prompt {
+    margin: 0 0 7px 33px;
+    color: var(--sub);
+    font-size: 12.5px;
+    line-height: 1.45;
+  }
+
+  .answer-box {
+    min-height: 42px;
+    padding: 8px 10px;
+    border: 1.2px dashed var(--soft-line);
+    border-radius: 8px;
+    font-size: 12px;
+    color: #777;
+  }
+
+  .answer-box.medium { min-height: 64px; }
+  .answer-box.large { min-height: 82px; }
+
+  .sentence-starter {
+    margin-bottom: 5px;
+    color: #555;
+    font-size: 12px;
+  }
+
+  .choice-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 8px;
+  }
+
+  .choice {
+    padding: 5px 10px;
+    border: 1px solid #c3c3c3;
+    border-radius: 16px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .feature-list {
+    display: grid;
+    gap: 7px;
+  }
+
+  .feature {
+    display: grid;
+    grid-template-columns: 74px 1fr;
+    align-items: center;
+    min-height: 42px;
+    border: 1.2px dashed var(--soft-line);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .feature-label {
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    background: var(--paper-soft);
+    color: #555;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .feature-space { min-height: 40px; }
+
+  .page-number {
+    margin-top: 8px;
+    color: #888;
+    text-align: right;
+    font-size: 10px;
+  }
+
+  .summary-card {
+    padding: 14px;
+    border: 2px solid var(--line);
+    border-radius: 10px;
+  }
+
+  .summary-card h2 {
+    margin: 0 0 4px;
+    font-size: 17px;
+  }
+
+  .summary-card > p {
+    margin: 0 0 10px;
+    color: var(--sub);
+    font-size: 12.5px;
+  }
+
+  .summary-row {
+    margin-top: 9px;
+  }
+
+  .summary-label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .summary-space {
+    min-height: 39px;
+    border-bottom: 1px solid #777;
+  }
+
+  .ready-box {
+    margin-top: 14px;
+    padding: 13px 15px;
+    border-radius: 9px;
+    background: var(--accent-soft);
+    text-align: center;
+  }
+
+  .ready-box strong {
+    display: block;
+    margin-bottom: 4px;
+    color: #236b49;
+    font-size: 16px;
+  }
+
+  .ready-box p {
+    margin: 0;
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+
+  .prd-note {
+    margin-top: 13px;
+    padding: 10px 12px;
+    border: 1px solid #c9c9c9;
+    border-radius: 8px;
+    font-size: 11.5px;
+    line-height: 1.5;
+    color: #555;
+  }
+
+  @media (max-width: 760px) {
+    body { background: #fff; }
+    .page {
+      width: 100%;
+      min-height: auto;
+      margin: 0;
+      padding: 20px;
+      box-shadow: none;
+    }
+    .sheet-header { align-items: flex-start; flex-direction: column; }
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+
+  @media print {
+    body { background: #fff; }
+    .page {
+      width: auto;
+      min-height: 0;
+      margin: 0;
+      padding: 0;
+      box-shadow: none;
+      break-after: page;
+    }
+    .page:last-child { break-after: auto; }
+
+    .sheet-header {
+      padding-bottom: 8px;
+      margin-bottom: 10px;
+    }
+
+    .intro {
+      padding: 9px 12px;
+      margin-bottom: 10px;
+    }
+
+    .section {
+      margin-bottom: 10px;
+    }
+
+    .prompt {
+      margin-bottom: 5px;
+    }
+
+    .answer-box {
+      min-height: 36px;
+    }
+
+    .answer-box.medium {
+      min-height: 52px;
+    }
+
+    .answer-box.large {
+      min-height: 68px;
+    }
+
+    .feature-list {
+      gap: 5px;
+    }
+
+    .feature {
+      min-height: 36px;
+    }
+
+    .feature-space {
+      min-height: 34px;
+    }
+
+    .summary-card {
+      padding: 11px 13px;
+    }
+
+    .summary-row {
+      margin-top: 6px;
+    }
+
+    .summary-space {
+      min-height: 27px;
+    }
+
+    .ready-box {
+      margin-top: 10px;
+      padding: 10px 13px;
+    }
+
+    .prd-note {
+      margin-top: 9px;
+      padding: 8px 11px;
+    }
+
+    .page-number {
+      margin-top: 5px;
+    }
+  }
+</style>
+</head>
+<body>
+  <section class="page">
+    <header class="sheet-header">
+      <div>
+        <h1>AI Project Design Canvas</h1>
+        <div class="subtitle">Design your idea before building with AI.</div>
+      </div>
+      <div class="student-info">
+        <span>Name: <span class="write-line"></span></span>
+        <span>Date: <span class="write-line"></span></span>
+      </div>
+    </header>
+
+    <div class="intro">
+      Good projects start with good ideas. Think first, then build with AI.
+      AI is your project partner, but you are the creator.
+    </div>
+
+    <section class="section">
+      <h2 class="section-heading"><span class="number">1</span>Project Title</h2>
+      <p class="prompt">What is the name of your project?</p>
+      <div class="answer-box"></div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-heading"><span class="number">2</span>What do you want to make?</h2>
+      <p class="prompt">Explain your idea in one or two simple sentences.</p>
+      <div class="sentence-starter">I want to make a...</div>
+      <div class="answer-box large"></div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-heading"><span class="number">3</span>Who is it for?</h2>
+      <p class="prompt">Who will use your project? Choose one or more.</p>
+      <div class="choice-row">
+        <span class="choice">□ Students</span>
+        <span class="choice">□ Friends</span>
+        <span class="choice">□ Family</span>
+        <span class="choice">□ Church members</span>
+        <span class="choice">□ Other</span>
+      </div>
+      <div class="sentence-starter">My project is for...</div>
+      <div class="answer-box"></div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-heading"><span class="number">4</span>What problem does it solve?</h2>
+      <p class="prompt">What problem or need does your project help with?</p>
+      <div class="grid-2">
+        <div>
+          <div class="sentence-starter">The problem is...</div>
+          <div class="answer-box medium"></div>
+        </div>
+        <div>
+          <div class="sentence-starter">My project helps by...</div>
+          <div class="answer-box medium"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="page-number">AI Project Design Canvas · 1 / 2</div>
+  </section>
+
+  <section class="page">
+    <header class="sheet-header">
+      <div>
+        <h1>Build Your Project Plan</h1>
+        <div class="subtitle">Choose the features and style that match your idea.</div>
+      </div>
+      <div class="student-info">
+        <span>Name: <span class="write-line"></span></span>
+      </div>
+    </header>
+
+    <section class="section">
+      <h2 class="section-heading"><span class="number">5</span>Main Features</h2>
+      <p class="prompt">What should your project do? Start with the most important feature.</p>
+      <div class="feature-list">
+        <div class="feature">
+          <div class="feature-label">Feature 1</div>
+          <div class="feature-space"></div>
+        </div>
+        <div class="feature">
+          <div class="feature-label">Feature 2</div>
+          <div class="feature-space"></div>
+        </div>
+        <div class="feature">
+          <div class="feature-label">Feature 3</div>
+          <div class="feature-space"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-heading"><span class="number">6</span>Design / Mood</h2>
+      <p class="prompt">How should your project look and feel? Choose words and add your own ideas.</p>
+      <div class="choice-row">
+        <span class="choice">□ Fun</span>
+        <span class="choice">□ Cool</span>
+        <span class="choice">□ Cute</span>
+        <span class="choice">□ Calm</span>
+        <span class="choice">□ Simple</span>
+        <span class="choice">□ Colorful</span>
+        <span class="choice">□ Professional</span>
+      </div>
+      <div class="grid-2">
+        <div>
+          <div class="sentence-starter">Colors</div>
+          <div class="answer-box"></div>
+        </div>
+        <div>
+          <div class="sentence-starter">Style / Mood</div>
+          <div class="answer-box"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-heading"><span class="number">7</span>What should never change?</h2>
+      <p class="prompt">What idea, feature, or feeling must stay in your project?</p>
+      <div class="sentence-starter">The most important thing to keep is...</div>
+      <div class="answer-box medium"></div>
+    </section>
+
+    <section class="summary-card">
+      <h2>My Project Summary</h2>
+      <p>Use your answers above. This summary will help your AI partner understand your project.</p>
+      <div class="summary-row">
+        <span class="summary-label">My project is...</span>
+        <div class="summary-space"></div>
+      </div>
+      <div class="summary-row">
+        <span class="summary-label">It is for...</span>
+        <div class="summary-space"></div>
+      </div>
+      <div class="summary-row">
+        <span class="summary-label">It helps people by...</span>
+        <div class="summary-space"></div>
+      </div>
+      <div class="summary-row">
+        <span class="summary-label">The most important feature is...</span>
+        <div class="summary-space"></div>
+      </div>
+    </section>
+
+    <div class="ready-box">
+      <strong>Ready for AI!</strong>
+      <p>Now explain this Canvas to your AI partner. AI helps you build your idea. AI does not replace your thinking.</p>
+    </div>
+
+    <div class="prd-note">
+      Keep this Canvas during the project. It is your project guide (PRD).
+      If your idea changes, update the Canvas first.
+    </div>
+
+    <div class="page-number">AI Project Design Canvas · 2 / 2</div>
+  </section>
+</body>
+</html>
