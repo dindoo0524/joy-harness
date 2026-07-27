@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mission Cards</title>
+  <style>
+    :root {
+      --ink: #172238;
+      --paper: #fffdf8;
+      --line: #172238;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #d9dde4;
+      color: var(--ink);
+      font-family: "Arial Rounded MT Bold", "Trebuchet MS", Arial, sans-serif;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .deck {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 28px;
+      padding: 28px;
+    }
+
+    .page {
+      --accent: #ff7657;
+      --soft: #fff0e8;
+      --second: #f9c94e;
+      position: relative;
+      width: 210mm;
+      min-height: 297mm;
+      overflow: hidden;
+      padding: 14mm;
+      background:
+        radial-gradient(circle at 94% 7%, var(--second) 0 3.5mm, transparent 3.7mm),
+        radial-gradient(circle at 8% 94%, var(--accent) 0 2.6mm, transparent 2.8mm),
+        var(--paper);
+      box-shadow: 0 8px 30px rgba(23, 34, 56, .18);
+    }
+
+    .page.recycling {
+      --accent: #21a675;
+      --soft: #e8f7ef;
+      --second: #70d6ff;
+    }
+
+    .ko {
+      font-family: "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+      word-break: keep-all;
+    }
+
+    .ko h1 { letter-spacing: -.05em; }
+    .ko .tagline,
+    .ko p,
+    .ko ul,
+    .ko .question {
+      font-family: "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+    }
+
+    .frame {
+      min-height: 269mm;
+      border: 2.4mm solid var(--line);
+      border-radius: 8mm;
+      padding: 9mm;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      align-self: flex-start;
+      gap: 3mm;
+      padding: 2.2mm 5mm;
+      border: 1.2mm solid var(--line);
+      border-radius: 99px;
+      background: var(--second);
+      font-size: 12pt;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .number {
+      display: grid;
+      width: 8mm;
+      height: 8mm;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--line);
+      color: white;
+      font-size: 10pt;
+    }
+
+    h1 {
+      margin: 7mm 0 2.5mm;
+      max-width: 160mm;
+      font-size: 30pt;
+      line-height: .98;
+      letter-spacing: -.04em;
+    }
+
+    .tagline {
+      margin: 0 0 7mm;
+      font: 15pt/1.35 "Trebuchet MS", Arial, sans-serif;
+    }
+
+    .mission {
+      display: grid;
+      grid-template-columns: 24mm 1fr;
+      gap: 5mm;
+      align-items: center;
+      margin-bottom: 6mm;
+      padding: 6mm;
+      border: 1.5mm solid var(--line);
+      border-radius: 5mm;
+      background: var(--accent);
+      color: white;
+      box-shadow: 2.5mm 2.5mm 0 var(--line);
+    }
+
+    .hero-icon {
+      display: grid;
+      width: 22mm;
+      height: 22mm;
+      place-items: center;
+      border: 1.2mm solid var(--line);
+      border-radius: 50%;
+      background: white;
+      color: var(--ink);
+      font-size: 29pt;
+    }
+
+    .mission h2,
+    .mission p { margin: 0; }
+    .mission h2 { font-size: 12pt; text-transform: uppercase; letter-spacing: .09em; }
+    .mission p { margin-top: 1mm; font-size: 16pt; line-height: 1.25; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5mm;
+    }
+
+    .panel {
+      border: 1.2mm solid var(--line);
+      border-radius: 5mm;
+      padding: 5mm;
+      background: white;
+    }
+
+    .panel.tint { background: var(--soft); }
+
+    h3 {
+      margin: 0 0 3mm;
+      font-size: 14pt;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    p {
+      margin: 0;
+      font: 11.5pt/1.45 "Trebuchet MS", Arial, sans-serif;
+    }
+
+    .examples {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5mm;
+      margin-top: 4mm;
+    }
+
+    .chip {
+      display: flex;
+      align-items: center;
+      gap: 2mm;
+      padding: 2.5mm;
+      border: .8mm solid var(--line);
+      border-radius: 3mm;
+      background: white;
+      font-size: 10.5pt;
+    }
+
+    .chip b { font-size: 17pt; }
+
+    ul {
+      margin: 0;
+      padding-left: 5mm;
+      font: 10.8pt/1.55 "Trebuchet MS", Arial, sans-serif;
+    }
+
+    .wide {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 6mm;
+      align-items: start;
+    }
+
+    .questions {
+      display: grid;
+      gap: 2.5mm;
+    }
+
+    .question {
+      display: flex;
+      align-items: flex-start;
+      gap: 2.5mm;
+      font: 10.8pt/1.35 "Trebuchet MS", Arial, sans-serif;
+    }
+
+    .check {
+      flex: 0 0 auto;
+      width: 5mm;
+      height: 5mm;
+      border: .8mm solid var(--line);
+      border-radius: 1.2mm;
+      background: white;
+    }
+
+    .footer {
+      margin-top: auto;
+      padding-top: 6mm;
+      text-align: center;
+    }
+
+    .footer-line {
+      height: 1.2mm;
+      margin-bottom: 4mm;
+      background: repeating-linear-gradient(90deg, var(--accent) 0 12mm, transparent 12mm 15mm);
+    }
+
+    .footer p {
+      font-size: 12pt;
+      font-weight: bold;
+      letter-spacing: .025em;
+    }
+
+    @media (max-width: 850px) {
+      .deck { padding: 0; gap: 16px; }
+      .page {
+        width: 100%;
+        min-height: auto;
+        aspect-ratio: 210 / 297;
+        padding: 5vw;
+        transform-origin: top center;
+      }
+      .frame { min-height: 100%; }
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+
+    @media print {
+      body { background: white; }
+      .deck { display: block; padding: 0; }
+      .page {
+        width: 210mm;
+        height: 297mm;
+        min-height: 297mm;
+        box-shadow: none;
+        break-after: page;
+        page-break-after: always;
+      }
+      .page:last-child {
+        break-after: auto;
+        page-break-after: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+<body>
+  <main class="deck">
+    <section class="page">
+      <div class="frame">
+        <div class="eyebrow"><span class="number">01</span> Mission Card</div>
+        <h1>SCHOOL GUIDE KIOSK</h1>
+        <p class="tagline">Help every new student feel confident on their first day.</p>
+
+        <div class="mission">
+          <div class="hero-icon">🗺️</div>
+          <div>
+            <h2>Your Mission</h2>
+            <p>Create a service that helps new students find places at school.</p>
+          </div>
+        </div>
+
+        <div class="grid">
+          <article class="panel tint">
+            <h3>The Problem</h3>
+            <p>New students sometimes don't know where to go.</p>
+            <div class="examples">
+              <div class="chip"><b>🏫</b> Classroom</div>
+              <div class="chip"><b>📚</b> Library</div>
+              <div class="chip"><b>🚻</b> Restroom</div>
+              <div class="chip"><b>🍽️</b> Cafeteria</div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <h3>Your Goal</h3>
+            <p>Design a simple guide that helps students find the right place quickly and easily.</p>
+          </article>
+
+          <article class="panel">
+            <h3>Your Team Can Create</h3>
+            <ul>
+              <li>A paper screen</li>
+              <li>Big buttons</li>
+              <li>A school map</li>
+              <li>Direction cards</li>
+              <li>A simple flowchart</li>
+              <li>A role-play demonstration</li>
+            </ul>
+          </article>
+
+          <article class="panel tint">
+            <h3>Think About</h3>
+            <div class="questions">
+              <div class="question"><span class="check"></span>Is it easy to use?</div>
+              <div class="question"><span class="check"></span>Is it easy to understand?</div>
+              <div class="question"><span class="check"></span>Can younger students use it?</div>
+              <div class="question"><span class="check"></span>Can new students find the place quickly?</div>
+            </div>
+          </article>
+        </div>
+
+        <footer class="footer">
+          <div class="footer-line"></div>
+          <p>NO SINGLE CORRECT ANSWER · WORK TOGETHER · TEST · IMPROVE · HAVE FUN!</p>
+        </footer>
+      </div>
+    </section>
+    <section class="page ko">
+      <div class="frame">
+        <div class="eyebrow"><span class="number">01</span> 미션 카드</div>
+        <h1>학교 길찾기 키오스크</h1>
+        <p class="tagline">새로 온 학생들이 학교에서 길을 쉽게 찾도록 도와주세요.</p>
+
+        <div class="mission">
+          <div class="hero-icon">🗺️</div>
+          <div>
+            <h2>우리의 미션</h2>
+            <p>새로 온 학생들이 학교 안의 장소를 찾도록 도와주는 서비스를 만드세요.</p>
+          </div>
+        </div>
+
+        <div class="grid">
+          <article class="panel tint">
+            <h3>어떤 문제가 있나요?</h3>
+            <p>새로 온 학생들은 어디로 가야 할지 모를 때가 있습니다.</p>
+            <div class="examples">
+              <div class="chip"><b>🏫</b> 교실</div>
+              <div class="chip"><b>📚</b> 도서관</div>
+              <div class="chip"><b>🚻</b> 화장실</div>
+              <div class="chip"><b>🍽️</b> 급식실</div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <h3>우리의 목표</h3>
+            <p>학생들이 원하는 장소를 빠르고 쉽게 찾도록 도와주는 간단한 안내 서비스를 디자인하세요.</p>
+          </article>
+
+          <article class="panel">
+            <h3>이런 것을 만들 수 있어요</h3>
+            <ul>
+              <li>종이로 만든 화면</li>
+              <li>큰 버튼</li>
+              <li>학교 지도</li>
+              <li>방향 안내 카드</li>
+              <li>간단한 순서도</li>
+              <li>역할극 시연</li>
+            </ul>
+          </article>
+
+          <article class="panel tint">
+            <h3>생각해 보세요</h3>
+            <div class="questions">
+              <div class="question"><span class="check"></span>사용하기 쉬운가요?</div>
+              <div class="question"><span class="check"></span>이해하기 쉬운가요?</div>
+              <div class="question"><span class="check"></span>어린 학생도 사용할 수 있나요?</div>
+              <div class="question"><span class="check"></span>새로 온 학생이 장소를 빨리 찾을 수 있나요?</div>
+            </div>
+          </article>
+        </div>
+
+        <footer class="footer">
+          <div class="footer-line"></div>
+          <p>정답은 하나가 아니에요 · 함께 만들기 · 테스트하기 · 더 좋게 고치기 · 즐기기!</p>
+        </footer>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
