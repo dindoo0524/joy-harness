@@ -22,5 +22,11 @@
 | 14 | 2026-07-23 | 페이스북 | 두 번째 치앙마이 여행 - 출발 안내 (톤 다운) | `2026/2026-07-23-second-chiangmai-trip-facebook-announcement.md` |
 | 15 | 2026-07-30 | 페이스북 | 2026 가을학기 수강신청 & 등록금 납부 완료 | `2026/2026-07-30-fall-registration-tuition-facebook.md` |
 | 16 | 2026-07-30 | 인스타그램 | 2026 가을학기 수강신청 & 등록금 납부 완료 | `2026/2026-07-30-fall-tuition-payment-instagram.md` |
+| 17 | 2026-07-31 | 인스타그램 | Happy Happy Joy Joy - 수영 & 수영복 | `2026/2026-07-31-happy-swimming-chiangmai.md` |
+| 18 | 2026-07-31 | 페이스북 | AI Project 1기 - 정규 수업 완료 & Expo 앞두고 | `2026/2026-07-31-ai-project-1-expo-facebook.md` |
+| 19 | 2026-07-31 | 인스타그램 | Seafood at One Market | `2026/2026-07-31-seafood-one-market-chiangmai.md` |
+| 20 | 2026-08-01 | 페이스북 | AI Project 1기 - Codex로 v3.0 개인 프로젝트까지 | `2026/2026-08-01-ai-project-1-codex-v3-facebook.md` |
+| 21 | 2026-08-01 | 인스타그램 | Stay in Chiang Mai - 일상 | `2026/2026-08-01-stay-in-chiangmai-daily.md` |
+| 22 | 2026-08-06 | 페이스북 | 학교 수업 마지막날 | `2026/2026-08-06-school-last-day-facebook.md` |
 
-<!-- 새 항목은 이 줄 아래에 추가 (번호는 이어서 #17부터) -->
+<!-- 새 항목은 이 줄 아래에 추가 (번호는 이어서 #23부터) -->

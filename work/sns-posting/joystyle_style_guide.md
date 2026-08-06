@@ -29,7 +29,7 @@
 - 구분 기호: `.` 한 줄씩 여러 번 (섹션 전환), `✏` (포인트 표시), 굵은 이모지 헤더 (`📚`, `🔥`).
 
 **해시태그 규칙**
-- 코어 세트(여행/일상): `#joystyle #travel` 줄바꿈 `#chiangmai #thailand 🇹🇭` 줄바꿈 + 주제별 태그 1개 (`#hiking`, `#sketchbook`, `#movie`, `#friends`, `#sudoku`).
+- 코어 세트(여행/일상): `#joystyle #travel` 줄바꿈 `#chiangmai #thailand 🇹🇭` 줄바꿈 + 주제별 태그 1개 (`#hiking`, `#sketchbook`, `#movie`, `#friends`, `#sudoku`, `#culture` — 생활/문화 체험 소재).
 - 코어 세트(커리어): `#joystyle #career` 줄바꿈 `#edu #ai #programming`.
 - 항상 소문자, 띄어쓰기 없이, 국기 이모지(🇹🇭)는 hashtag 옆이 아니라 `#thailand` 바로 뒤에 붙임.
 - 해시태그는 항상 본문 맨 마지막, 빈 줄로 구분.
